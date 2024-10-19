@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Etsy Order Data Extractor",
+  "version": "1.0",
+  "description": "Extract order data from Etsy using Claude AI API via OpenRouter",
+  "permissions": ["contextMenus", "activeTab", "storage", "scripting"],
+  "host_permissions": ["https://*.etsy.com/*", "https://openrouter.ai/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.etsy.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
