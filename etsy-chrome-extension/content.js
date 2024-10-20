@@ -16,17 +16,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         "Could not find the order details. Make sure you're on an Etsy order page."
       );
     }
-  } else if (request.action === "showAlert") {
-    alert(request.message);
   }
   sendResponse({ received: true });
 });
 
 function extractOrderData() {
-  return (
-    document.getElementsByClassName("address")[0].outerHTML +
-    document.getElementById("order-detail-container").outerHTML
-  );
-}
+  let addressElement = document.getElementsByClassName("address")[0];
 
-console.log("Content script fully loaded");
+  const orderDetailsElement = document.querySelector(
+    ".panel.mb-xs-0.text-smaller.p-xs-4"
+  );
+  debugger;
+  return addressElement.outerHTML + orderDetailsElement.outerHTML;
+}

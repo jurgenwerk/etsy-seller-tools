@@ -1,10 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "Etsy Order Data Extractor",
+  "name": "Etsy -> Posta Slovenije",
   "version": "1.0",
-  "description": "Extract order data from Etsy using Claude AI API via OpenRouter",
-  "permissions": ["contextMenus", "activeTab", "storage", "scripting"],
-  "host_permissions": ["https://*.etsy.com/*", "https://openrouter.ai/*"],
+  "description": "Send data from Etsy to Posta Slovenije Portal",
+  "permissions": [
+    "scripting",
+    "tabs",
+    "storage",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://uvoz-izvoz.posta.si/*",
+    "https://*.etsy.com/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
@@ -13,7 +21,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.etsy.com/*"],
+      "matches": ["https://*.etsy.com/*"],
       "js": ["content.js"]
     }
   ]
