@@ -119,6 +119,13 @@ async function handleExtractOrderData(request, sender) {
     }
 
     const data = await response.json();
+    if (data.error) {
+      chrome.tabs.sendMessage(sender.tab.id, {
+        action: "showAlert",
+        message: data.error.message,
+      });
+      throw new Error(data.error.message);
+    }
 
     chrome.tabs.create(
       { url: "https://uvoz-izvoz.posta.si/en/export/shipment/edit" },
